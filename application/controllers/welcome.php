@@ -23,8 +23,13 @@ class Welcome extends CI_Controller {
 		$this->load->view('welcome_message');
 	}
 	public function login()
-	{
-		$this->load->view('login');
+	{	$user=$this->input->post('user');
+		$password=$this->input->post('password');
+
+		$this->load->view('login',array(
+			'user'=>$user,
+			'password'=>$password
+			));
 	}
 }
 
