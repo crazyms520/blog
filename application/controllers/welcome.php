@@ -21,20 +21,11 @@ class Welcome extends CI_Controller {
 	{
 		$this->load->helper('url');
 		$this->load->view('welcome_message');
-
-
-
 	}
-	public function post(){
-
-			$num=$_POST['number'];
-			// echo $num;//]
-		$this->load->view('post', array(
-			'num' => $num
-			));
-
+	public function login()
+	{
+		$this->load->view('login');
 	}
-
 }
 
 /* End of file welcome.php */
