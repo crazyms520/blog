@@ -19,18 +19,40 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+
 		$this->load->helper('url');
 		$this->load->view('welcome_message');
 	}
 	public function login()
-	{	$user=$this->input->post('user');
-		$password=$this->input->post('password');
+	{
+		$this->load->helper('url');
+		$this->load->view('login');
 
-		$this->load->view('login',array(
-			'user'=>$user,
-			'password'=>$password
-			));
 	}
+
+
+
+	public function post()
+	{
+
+		$this->load->helper('url');
+		$user=$this->input->post('user');
+		$password=$this->input->post('password');
+		$this->load->view('post',array(
+		'user'=>$user,
+		'password'=>$password
+		));
+
+	}
+
+	public function alts()
+	{
+		$this->load->helper('url');
+		$this->load->view('alts');
+	}
+
+
+
 }
 
 /* End of file welcome.php */
