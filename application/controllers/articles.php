@@ -3,13 +3,7 @@
 class Articles extends CI_Controller {
 
 public function index(){
-  $this->load->model('article');
-  $aaa=$this->article->aaa();
-
-
-  $this->load->view('articles',array(
-    'art'=>$aaa
-    ));
+  $this->load->view('articles');
   }
 
 public function add(){
