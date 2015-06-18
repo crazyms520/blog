@@ -9,5 +9,10 @@
   <a href='<?php echo site_url('articles')?>'>文章列表</a>
   <a href='<?php echo site_url('articles/add')?>'>新增文章</a>
   <hr/>
+
+  <?php
+    echo $title1."<br>".$title2."<br>".$title3;
+  ?>
+
 </body>
 </html>
