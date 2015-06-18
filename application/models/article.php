@@ -18,14 +18,26 @@ class Article extends CI_Model {
     // return $a;
 
     $i=0;
-    foreach($get_article=$article->result() as $key=>$value){
+    foreach($get_article as $key=>$value){
 
         $a[$i]=array($i=>$value->title);
         $i++;
     }
     return $a;
   }
+public function get_book(){
+    $book=$this->db->get('books');
+    $get_book = $book->result();
 
+    $i=0;
+    foreach($get_book as $key=>$value){
+
+        $b[$i]=array($i=>$value->name);
+        $i++;
+    }
+
+    return $b;
+  }
 }
 
 

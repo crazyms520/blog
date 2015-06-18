@@ -11,6 +11,10 @@
   <a href='<?php echo site_url('book')?>'>書本列表</a>
   <a href='<?php echo site_url('book/book_add')?>'>新增書本</a>
   <hr/>
-  新增成功
+
+  <?php
+    echo $name1."<br>".$name2."<br>".$name3;
+  ?>
+
 </body>
 </html>

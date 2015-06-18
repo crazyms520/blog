@@ -11,6 +11,9 @@
   <a href='<?php echo site_url('book')?>'>書本列表</a>
   <a href='<?php echo site_url('book/book_add')?>'>新增書本</a>
   <hr/>
-  新增成功
+  <form action='<?php echo site_url('book/book_post');?>' method='post'>
+    <input type='text' name='ad' value=''>
+    <input type='submit' value='新增'>
+  </form>
 </body>
 </html>
