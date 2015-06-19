@@ -18,9 +18,14 @@ class Book extends CI_Model {
     }
 
   return $a;
+  }
 
+  public function add_name(){
 
+    $data=array(
+      'name'=>$_POST['addbook']
+      );
 
-
+    $this->db->insert('books',$data);
   }
 }

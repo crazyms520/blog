@@ -28,11 +28,17 @@ class Books extends CI_Controller {
   }
 
   public function add(){
+    // $this->load->model('book');
+    // $insert_name=$this->book->add_name();
     $this->load->view('add');
+
   }
 
   public function add_post(){
-    $this->load->view('add_post');
+    $this->load->model('book');
+    $insert_name=$this->book->add_name();
+
+    $this->load->view('add_post',$insert_name);
   }
 
 }

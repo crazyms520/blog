@@ -17,9 +17,13 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
+
+	//呼叫類別"welcome"的預設函數"index()"
 	public function index()
 	{
 		$this->load->view('welcome_message');
+		//載入view中的('welcome_message')
+
 	}
 
 
