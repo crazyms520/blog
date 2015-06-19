@@ -8,12 +8,16 @@
   <a href="<?php echo site_url('')?>">首頁</a>
   <a href='<?php echo site_url('articles')?>'>文章列表</a>
   <a href='<?php echo site_url('articles/add')?>'>新增文章</a>
-  <a href='<?php echo site_url('book')?>'>書本列表</a>
-  <a href='<?php echo site_url('book/book_add')?>'>新增書本</a>
+  <a href='<?php echo site_url('books')?>'>書本列表</a>
+  <a href='<?php echo site_url('books/book_add')?>'>新增書本</a>
   <hr/>
 
   <?php
-    echo $name1."<br>".$name2."<br>".$name3;
+
+  foreach($xxx as $book)
+  {
+    echo $book."<br>";
+  }
   ?>
 
 </body>

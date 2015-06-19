@@ -7,16 +7,13 @@ public function index(){
 
   $bbb=$this->article->get_article();
 
-  $aaa=array(
-    'title1'=>$bbb[0][0],
-    'title2'=>$bbb[1][1],
-    'title3'=>$bbb[2][2]
-
-    );
 
 
-  $this->load->view('articles',$aaa);
+  $this->load->view('articles',array(
+    'xxx'=>$bbb
+    ));
   }
+
 
 public function add(){
 
