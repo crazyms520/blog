@@ -13,9 +13,10 @@
     <!--移動到控制器啟動的類別('books 並呼叫函數 /add')-->
     <hr>
     <?php foreach ($name as $titles) {
-      # code...
       echo $titles."<br>";
+      //使用foreach印出$titles
     }
+
     ?>
   </body>
 </html>

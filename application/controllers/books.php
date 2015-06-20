@@ -20,25 +20,28 @@ class Books extends CI_Controller {
   public function index()
   {
     $this->load->model('book');
+    //載入模型('book')
     $bknm=$this->book->get_titles();
-
+    //使用模型'book'裡的函數'get_titles()',並將回傳的值賦予$bknm
     $this->load->view('books',array(
       'name'=>$bknm
       ));
+    //??載入檢視('books'帶入陣列array('name'=>$bknm))??
   }
 
   public function add(){
-    // $this->load->model('book');
-    // $insert_name=$this->book->add_name();
     $this->load->view('add');
+    //載入檢視('add')
 
   }
 
   public function add_post(){
     $this->load->model('book');
+    //載入模型('book')
     $insert_name=$this->book->add_name();
-
+    //使用模型'book'裡的函數'add_name()',並將回傳的值賦予$bknm
     $this->load->view('add_post',$insert_name);
+    //載入檢視('add_post',帶入參數$insert_name)
   }
 
 }
