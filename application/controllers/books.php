@@ -26,6 +26,7 @@ class Books extends CI_Controller {
     $this->load->view('books',array(
       'name'=>$bknm
       ));
+
     //??載入檢視('books'帶入陣列array('name'=>$bknm))??
 
     //$bknm['name']=$this->book->get_titles();
@@ -41,10 +42,22 @@ class Books extends CI_Controller {
   public function add_post(){
     $this->load->model('book');
     //載入模型('book')
-    $this->book->add_name();
+    $b = $this->input->post ('addbook');
+
+    $data=array(
+      'name'=>$b
+      );
+
+    $this->book->add_name($data);
     //使用模型'book'裡的函數'add_name()'
     $this->load->view('add_post');
     //載入檢視('add_post')
+  }
+
+  public function updata()
+  {
+
+    $this->load->view('updata');
   }
 
 }

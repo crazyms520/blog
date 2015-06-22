@@ -15,7 +15,7 @@
     <hr>
     <form action='<?php echo site_url('books/add_post')?>' method='post'>
     <input type='text' name='addbook' value=''>
-    <input type='submit' value='新增'>
+    <input type='submit' value='確認'>
     </form>
 
   </body>
