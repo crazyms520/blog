@@ -15,11 +15,12 @@
     <a href='<?php echo site_url ('articles/update');?>'>修改</a>
     <hr/>
 
-    <ol>
+
     <?php foreach ($articles as $article):?>
-    <li><?=$article->title."<br>"?></li>
+    <a href='<?php echo site_url ('articles/edit/' . $article->id);?>'>修改</a>|<a href='<?php echo site_url ('articles/delete/' . $article->id);?>'>刪除</a> - <?=$article->title."<br>"?>
     <?php endforeach;?>
-    </ol>
+
+
     <!-- <form action='<?php echo site_url('articles/update');?>'>
     <input type='text' name='update' value=''>
     <input type='submit' value='修改'> -->
