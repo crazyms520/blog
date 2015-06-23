@@ -12,22 +12,11 @@
     <a href='<?php echo site_url('books/add')?>'>新增書本</a>
     <!--移動到控制器啟動的類別('books 並呼叫函數 /add')-->
     <hr>
+    <form action='<?php echo site_url('books/edit')?>'>
+      <input type='text' name='fix'>
+    </form>
 
 
-    <?php
-    if($name){
-      foreach ($name as $titles){
 
-       echo $titles->name ."<br>";
-    }
-      }
-
-    ?>
-    <!--使用foreach印出$titles-->
-
-    <!--<?php foreach ($name as $titles){
-              echo $titles;
-          }
-    ?>-->
   </body>
 </html>

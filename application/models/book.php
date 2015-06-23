@@ -8,6 +8,9 @@ class Book extends CI_Model {
 
   public function get_titles()
   {
+
+
+
     $get_tit=$this->db->get('books');
     //將資料庫('books')取出來的值賦予$get_tit
     return $get_tit->result();
@@ -31,17 +34,15 @@ class Book extends CI_Model {
     //    'name'=>$_POST['addbook']
     //    );
     //將接收到的ＰＯＳＴ值賦予$data
-    //this->db->insert('books');
     $this->db->insert('books',$data);
+
+
     //新增資料庫,帶入參數$data
   }
+  public function updata($data){
 
-  public function name_updata()
-  {
-    $data=array(
-      'name'=>'amjgd'
-      );
-    $this->db->where('id',$id);
-    $this->db->updata('books',$data);
+    $this->db->where('id',5);
+    $this->db->update('books',$data);
   }
+
 }

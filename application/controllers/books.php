@@ -23,6 +23,7 @@ class Books extends CI_Controller {
     //載入模型('book')
     $bknm=$this->book->get_titles();
     //使用模型'book'裡的函數'get_titles()',並將回傳的值賦予$bknm
+
     $this->load->view('books',array(
       'name'=>$bknm
       ));
@@ -54,11 +55,16 @@ class Books extends CI_Controller {
     //載入檢視('add_post')
   }
 
-  public function updata()
-  {
-
-    $this->load->view('updata');
+  public function edit(){
+    $data=array(
+      'name'=>'fix1'
+      );
+    $this->load->model('book');
+    $this->book->updata($data);
+    $this->load->view('edit');
   }
+
+
 
 }
 
