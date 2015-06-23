@@ -11,6 +11,8 @@
     <a href='<?php echo site_url ('articles');?>'>文章列表</a>
 
     <a href='<?php echo site_url ('articles/add');?>'>新增文章</a>
+
+    <a href='<?php echo site_url ('articles/update');?>'>修改</a>
     <hr/>
 
     <form action='<?php echo site_url ('articles/add_post');?>' method='post'>

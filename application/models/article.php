@@ -16,4 +16,10 @@ class Article extends CI_Model {
     {
       $this->db->insert('articles', $data);
     }
+    public function update_article($id, $data)
+    {
+
+      $this->db->where('id',$id);
+      $this->db->update('articles',$data);
+    }
 }
