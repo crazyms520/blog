@@ -56,12 +56,16 @@ class Books extends CI_Controller {
   }
 
   public function edit(){
-    $data=array(
-      'name'=>'fix1'
-      );
-    $this->load->model('book');
-    $this->book->updata($data);
-    $this->load->view('edit');
+
+    // $this->load->model('book');
+    // $i = $this->input->post('id');
+    // $g = $this->input->post('upatename');
+    // $data=array(
+    //   'name'=>$g
+    //   );
+
+    // $this->book->updata($data);
+    // $this->load->view('edit');
   }
 
 

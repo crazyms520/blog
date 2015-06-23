@@ -39,9 +39,9 @@ class Book extends CI_Model {
 
     //新增資料庫,帶入參數$data
   }
-  public function updata($data){
+  public function updata($id,$data){
 
-    $this->db->where('id',5);
+    $this->db->where('id',$id);
     $this->db->update('books',$data);
   }
 
