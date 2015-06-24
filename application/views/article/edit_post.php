@@ -12,7 +12,6 @@
 
     <a href='<?php echo site_url ('articles/add');?>'>新增文章</a>
 
-    <a href='<?php echo site_url ('articles/update');?>'>修改</a>
     <hr/>
     修改成功
 
