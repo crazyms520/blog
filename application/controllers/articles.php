@@ -28,11 +28,17 @@ class Articles extends CI_Controller {
 
   public function edit($id=0)
   {
+
     $this->load->model('article');
-    $articles = $this->article->get_articles();
+    $article = $this->article->get_article($id);
+
+    if (!$article)
+      redirect ('articles');
+
     $data=array(
-      'article'=>$articles
+      'article' => $article
       );
+
 
     $this->load->view('article/edit',$data);
 
@@ -42,10 +48,10 @@ class Articles extends CI_Controller {
   {
      $title = $this->input->post ('title');
 
-
-     // $this->article->update_article ($id, array (
-     //   'title' => $title
-     //  ));
+     $this->load->model('article');
+     $this->article->update_article ($id, array (
+       'title' => $title
+      ));
 
     $this->load->view('article/edit_post');
   }

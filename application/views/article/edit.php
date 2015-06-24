@@ -15,8 +15,8 @@
 
     <hr/>
 
-    <form action='<?php echo site_url ('articles/edit_post');?>' method='post'>
-      <input type='text' name='title' value=''>
+    <form action='<?php echo site_url ('articles/edit_post/' . $article->id);?>' method='post'>
+      <input type='text' name='title' value='<?php echo $article->title?>'>
       <input type='submit' value='修改'>
     </form>
 

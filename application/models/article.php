@@ -6,11 +6,26 @@ class Article extends CI_Model {
     {
         parent::__construct();
    }
+   public function get_article ($id) {
 
+    $this->db->where('id',$id);
+    $query = $this->db->get('articles');
+
+    $result = $query->result ();
+
+
+    if (count($result) > 0)
+      return $result[0];
+    else
+      return null;
+
+   }
     public function get_articles ()
     {
      $query = $this->db->get('articles');
+
       return $query->result();
+
     }
     public function add_article ($data)
     {
