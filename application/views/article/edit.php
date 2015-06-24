@@ -15,8 +15,8 @@
     <a href='<?php echo site_url ('articles/update');?>'>修改</a>
     <hr/>
 
-    <form action='<?php echo site_url ('articles/edit_post/'.$articles->id);?>' method='post'>
-      <input type='text' name='title' value='<?php echo $articles->title;?>'>
+    <form action='<?php echo site_url ('articles/edit_post');?>' method='post'>
+      <input type='text' name='title' value=''>
       <input type='submit' value='修改'>
     </form>
 
