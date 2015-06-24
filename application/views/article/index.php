@@ -17,7 +17,7 @@
 
 
     <?php foreach ($articles as $article):?>
-    <a href='<?php echo site_url ('articles/edit/' . $article->id);?>'>修改</a>|<a href='<?php echo site_url ('articles/delete/' . $article->id);?>'>刪除</a> - <?=$article->title."<br>"?>
+    <a href='<?php echo site_url ('articles/edit/' . $article->id);?>'>修改</a>|<a href='<?php echo site_url ('articles/delete/' . $article->id);?>'>刪除</a> - <?php echo $article->title."<br>";?>
     <?php endforeach;?>
 
 
