@@ -26,26 +26,35 @@ class Articles extends CI_Controller {
     $this->load->view('article/add_post');
   }
 
-  public function edit()
+  public function edit($id=0)
   {
     $this->load->model('article');
     $articles = $this->article->get_articles();
-    $this->load->view('article/edit',array(
-      'articles'=>$articles
-      ));
+    $data=array(
+      'article'=>$articles
+      );
+
+    $this->load->view('article/edit',$data);
 
   }
 
-  public function edit_post ()
+  public function edit_post ($id=0)
   {
-    // $title = $this->input->post ('title');
+     $title = $this->input->post ('title');
 
 
-    // $this->article->update_article ($id, array (
-    //   'title' => $title
-    //   ));
+     // $this->article->update_article ($id, array (
+     //   'title' => $title
+     //  ));
 
     $this->load->view('article/edit_post');
+  }
+
+  public function delete($id=0)
+  {
+    $this->load->model('article');
+    $this->article->delete_article($id);
+    $this->load->view('article/delete');
   }
   // public function update()
   // {
