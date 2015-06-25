@@ -11,7 +11,7 @@
     -
     <a href='<?php echo site_url('platform/register');?>'>註冊</a>
     <hr/>
-    註冊成功!
+    <?php echo $message ; ?>
 
 
 
