@@ -73,22 +73,28 @@ class Platform extends CI_Controller {
       $this->load->view('platform/register_post');
     }
 
-    public function article()
-    {
-      $this->load->view('platform/article');
-    }
+    // public function article()
+    // {
+    //   $this->load->model('user');
+    //   $articles=$this->user->get_article();
 
-    public function add_article()
-    {
-      $this->load->view('platform/add_article');
-    }
+    //   $this->load->view('platform/article',array(
+    //     'articles'=>$articles
+    //     ));
+    // }
 
-    public function add_article_post()
-    {
-      $article=$this->input->post('add_article');
-      $this->load->model('user');
-      $this->user->add_article($article);
-      $this->load->view('platform/add_article_post');
-    }
+    // public function add_article()
+    // {
+
+    //   $this->load->view('platform/add_article');
+    // }
+
+    // public function add_article_post()
+    // {
+    //   $article=$this->input->post('add_article');
+    //   $this->load->model('user');
+    //   $this->user->add_article($article);
+    //   $this->load->view('platform/add_article_post');
+    // }
 }
 

@@ -13,8 +13,7 @@
     -
     <a href='<?php echo site_url('platform/logout');?>'>登出</a>
     <hr/>
-
-    新增成功!
+    刪除成功！
 
   </body>
 </html>

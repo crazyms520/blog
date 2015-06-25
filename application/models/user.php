@@ -28,11 +28,39 @@ class User extends CI_Model {
       );
     $this->db->insert('users',$data);
   }
+  public function get_articles()
+  {
+    $query=$this->db->get('articles');
+
+    return $query->result();
+  }
+  public function get_article($id)
+  {
+    $this->db->where('id',$id);
+    $query=$this->db->get('articles');
+    $result= $query->result();
+
+    if(count($result)>0){
+      return $result[0];
+    }else{
+      return null;
+    }
+  }
   public function add_article($article)
   {
     $data=array(
         'title'=>$article
       );
     $this->db->insert('articles',$data);
+  }
+  public function update($id,$data)
+  {
+    $this->db->where('id',$id);
+    $this->db->update('articles',$data);
+  }
+  public function delete($id)
+  {
+    $this->db->where('id',$id);
+    $this->db->delete('articles');
   }
 }
