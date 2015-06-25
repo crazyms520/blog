@@ -7,13 +7,9 @@ class User extends CI_Model {
 
   public function get_user_ap ($account, $password) {
     $this->db->where ('account', $account);
-
     $this->db->where ('password', $password);
-
-    $query = $this->db->get ('users');
-
-    $users = $query->result ();
-
+    $query = $this->db->get('users');
+    $users = $query->result();
     if (count ($users) > 0) {
       return $users[0];
     } else {

@@ -15,7 +15,7 @@
     <a href='<?php echo site_url('platform/login');?>'>登入</a>
       <?php }?>
     <hr/>
-    <form action='<?php echo site_url('platform/login_post');?>' method='POST'>
+    <form action='<?php echo site_url('platform/login_post');?>' method='post'>
       帳號:
       <input type='texe' name='account' value='' />
       <br/>

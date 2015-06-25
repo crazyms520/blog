@@ -16,9 +16,10 @@ class Platform extends CI_Controller {
     public function login_post()
     {
         $account=$this->input->post('account');
-        $password=$this->input->post('passowrd');
+        $password=$this->input->post('password');
         $this->load->model('user');
         $user=$this->user->get_user_ap($account,$password);
+
 
           if($user){
             $this->load->helper('cookie');
