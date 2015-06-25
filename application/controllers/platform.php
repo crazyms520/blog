@@ -41,6 +41,7 @@ class Platform extends CI_Controller {
 
 
     }
+
     public function logout()
     {
       $this->load->helper('cookie');
@@ -51,6 +52,23 @@ class Platform extends CI_Controller {
       $this->load->view('platform/logout',array(
           'has_login'=>$has_login
         ));
+    }
+
+    public function register()
+    {
+      $this->load->view('platform/register');
+    }
+
+    public function register_post()
+    {
+      $nick=$this->input->post('nick');
+
+      $account=$this->input->post('account');
+
+      $password=$this->input->post('password');
+      $this->load->model('user');
+      $this->user->register($account,$password,$nick);
+      $this->load->view('platform/register_post');
     }
 }
 

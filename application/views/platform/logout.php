@@ -14,6 +14,7 @@
       }else{?>
       -
       <a href='<?php echo site_url('platform/login');?>'>登入</a>
+
     <?php
     }
     ?>

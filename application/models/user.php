@@ -16,4 +16,17 @@ class User extends CI_Model {
       return null;
     }
   }
+
+  public function register($account,$password,$nick)
+  {
+    $data=array(
+
+      'account'=>$account,
+      'password'=>$password,
+      'nick'=>$nick
+
+      );
+    $this->db->insert('users',$data);
+  }
+
 }
