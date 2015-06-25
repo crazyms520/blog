@@ -28,5 +28,11 @@ class User extends CI_Model {
       );
     $this->db->insert('users',$data);
   }
-
+  public function add_article($article)
+  {
+    $data=array(
+        'title'=>$article
+      );
+    $this->db->insert('articles',$data);
+  }
 }

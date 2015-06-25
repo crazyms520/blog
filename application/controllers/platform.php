@@ -20,20 +20,22 @@ class Platform extends CI_Controller {
         $this->load->model('user');
         $user=$this->user->get_user_ap($account,$password);
 
-
           if($user){
             $this->load->helper('cookie');
 
             $this->input->set_cookie('is_login','YES',86500);
-
+            $n=$user->nick;
             $message='登入成功';
             $has_login=true;
           }else{
+
             $message='登入失敗';
             $has_login=false;
           }
 
         $this->load->view('platform/login_post',array(
+
+
             'message'=>$message,
 
             'has_login'=>$has_login
@@ -69,6 +71,24 @@ class Platform extends CI_Controller {
       $this->load->model('user');
       $this->user->register($account,$password,$nick);
       $this->load->view('platform/register_post');
+    }
+
+    public function article()
+    {
+      $this->load->view('platform/article');
+    }
+
+    public function add_article()
+    {
+      $this->load->view('platform/add_article');
+    }
+
+    public function add_article_post()
+    {
+      $article=$this->input->post('add_article');
+      $this->load->model('user');
+      $this->user->add_article($article);
+      $this->load->view('platform/add_article_post');
     }
 }
 
