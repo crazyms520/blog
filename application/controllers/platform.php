@@ -22,17 +22,19 @@ class Platform extends CI_Controller {
         $this->load->model('user');
         $user=$this->user->get_user_ap($account,$password);
 
-          if($user){
-            $this->load->helper('cookie');
+        if($user){
+          $this->load->helper('cookie');
 
-            $this->input->set_cookie('is_login','YES',86500);
-            $message='登入成功';
-            $has_login=true;
-          }else{
+          $this->input->set_cookie('is_login','YES',86500);
+          $message='登入成功';
+          $has_login=true;
 
-            $message='登入失敗';
-            $has_login=false;
-          }
+        }else{
+          $message='登入失敗';
+          $has_login=false;
+
+        }
+
 
 
       // $account=$this->input->post('account');
