@@ -27,6 +27,7 @@
       <br/>
       <br/>
       <input type='submit' value='登入'>
+      <input type='hidden' name='login' value='yes'>
     </form>
   </body>
 </html>

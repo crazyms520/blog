@@ -19,22 +19,26 @@ class Platform extends CI_Controller {
 
         $account=$this->input->post('account');
         $password=$this->input->post('password');
+        $hidden=$this->input->post('login');
         $this->load->model('user');
         $user=$this->user->get_user_ap($account,$password);
+        if($hidden){
+          if($user){
+            $this->load->helper('cookie');
 
-        if($user){
-          $this->load->helper('cookie');
+            $this->input->set_cookie('is_login','YES',86500);
+            $message='登入成功';
+            $has_login=true;
 
-          $this->input->set_cookie('is_login','YES',86500);
-          $message='登入成功';
-          $has_login=true;
+          }else{
+            $message='登入失敗';
+            $has_login=false;
 
-        }else{
-          $message='登入失敗';
-          $has_login=false;
-
-        }
-
+          }
+       }else{
+            $message='登入失敗';
+            $has_login=false;
+       }
 
 
       // $account=$this->input->post('account');
@@ -93,19 +97,18 @@ class Platform extends CI_Controller {
 
     $this->load->model('user');
     $userc=$this->user->get_user_by_acc_nic($account,$nick);
-
-    if(!$userc){
-      $this->user->register($account,$password,$nick);
-      $message='註冊成功';
-      $this->load->view('platform/register_post',array(
-          'message'=>$message
-        ));
-    }else{
-      $message='此帳號已有人使用';
-      $this->load->view('platform/register_post', array(
-          'message'=>$message
-        ));
-    }
+      if(!$userc){
+        $this->user->register($account,$password,$nick);
+        $message='註冊成功';
+        $this->load->view('platform/register_post',array(
+            'message'=>$message
+          ));
+      }else{
+        $message='此帳號已有人使用';
+        $this->load->view('platform/register_post', array(
+            'message'=>$message
+          ));
+      }
   }
 
   // public function article()
