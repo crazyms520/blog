@@ -18,25 +18,26 @@ class User extends CI_Model {
     }
   }
 
-  public function register($account,$password,$nick)
-  {
-      $data=array(
+  public function register($account,$password,$nick){
+    $data=array(
 
-        'account'=>$account,
-        'password'=>$password,
-        'nick'=>$nick
-        );
+      'account'=>$account,
+      'password'=>$password,
+      'nick'=>$nick
+      );
 
-      $this->db->insert('users',$data);
+    $this->db->insert('users',$data);
 
   }
-  public function get_user_by_acc_nic($account,$nick)
+  public function get_users_by_acc_nic($account)
   {
     $this->db->where('account', $account);
-    $this->db->where('nick', $nick);
+    // $this->db->where('nick', $nick);
     $query=$this->db->get('users');
+
     return $query->result();
   }
+
   public function get_articles()
   {
     $query=$this->db->get('articles');
@@ -59,7 +60,7 @@ class User extends CI_Model {
   {
     if($this->input->cookie('is_login')==='YES'){
     $data=array(
-        'title'=>$article
+      'title'=>$article
       );
     $this->db->insert('articles',$data);
     }
@@ -73,7 +74,6 @@ class User extends CI_Model {
   }
   public function delete($id)
   {
-
     $this->db->where('id',$id);
     $this->db->delete('articles');
 

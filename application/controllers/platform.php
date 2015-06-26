@@ -2,6 +2,10 @@
 
 class Platform extends CI_Controller {
 
+  function __construct(){
+    parent::__construct();
+
+  }
 
   public function login()
   {
@@ -15,57 +19,39 @@ class Platform extends CI_Controller {
   }
   public function login_post()
   {
+    $account=$this->input->post('account');
+    $password=$this->input->post('password');
 
+    // if (!($account && $password)) {
+    //   // 其中一個沒有
+    // } else {
 
-        $account=$this->input->post('account');
-        $password=$this->input->post('password');
-        $hidden=$this->input->post('login');
-        $this->load->model('user');
-        $user=$this->user->get_user_ap($account,$password);
-        if($hidden){
-          if($user){
-            $this->load->helper('cookie');
+    // }
+    $this->load->model('user');
+    $user=$this->user->get_user_ap($account,$password);
 
-            $this->input->set_cookie('is_login','YES',86500);
-            $message='登入成功';
-            $has_login=true;
+    if ($account && $password) {
+      // 真的post過來的
+      if($user){
+        $this->load->helper('cookie');
 
-          }else{
-            $message='登入失敗';
-            $has_login=false;
+        $this->input->set_cookie('is_login','YES',86500);
+        $message='登入成功';
+        $has_login=true;
+      } else {
+        $message='登入失敗';
+        $has_login=false;
+      }
+    }  else {
+      $message='登入失敗';
+      $has_login=false;
 
-          }
-       }else{
-            $message='登入失敗';
-            $has_login=false;
-       }
+    }
 
-
-      // $account=$this->input->post('account');
-      // $password=$this->input->post('password');
-      // $this->load->model('user');
-      // $user=$this->user->get_user_ap($account,$password);
-
-      //   if($user){
-      //     $this->load->helper('cookie');
-
-      //     $this->input->set_cookie('is_login','YES',86500);
-      //     $n=$user->nick;
-      //     $message='登入成功';
-      //     $has_login=true;
-      //   }else{
-
-      //     $message='登入失敗';
-      //     $has_login=false;
-      //   }
-
-      $this->load->view('platform/login_post',array(
-
-
-          'message'=>$message,
-
-          'has_login'=>$has_login
-        ));
+    $this->load->view('platform/login_post',array(
+      'message'=>$message,
+      'has_login'=>$has_login
+    ));
 
 
   }
@@ -96,7 +82,7 @@ class Platform extends CI_Controller {
     $password=$this->input->post('password');
 
     $this->load->model('user');
-    $userc=$this->user->get_user_by_acc_nic($account,$nick);
+    $userc=$this->user->get_users_by_acc_nic($account);
       if(!$userc){
         $this->user->register($account,$password,$nick);
         $message='註冊成功';
@@ -110,29 +96,5 @@ class Platform extends CI_Controller {
           ));
       }
   }
-
-  // public function article()
-  // {
-  //   $this->load->model('user');
-  //   $articles=$this->user->get_article();
-
-  //   $this->load->view('platform/article',array(
-  //     'articles'=>$articles
-  //     ));
-  // }
-
-  // public function add_article()
-  // {
-
-  //   $this->load->view('platform/add_article');
-  // }
-
-  // public function add_article_post()
-  // {
-  //   $article=$this->input->post('add_article');
-  //   $this->load->model('user');
-  //   $this->user->add_article($article);
-  //   $this->load->view('platform/add_article_post');
-  // }
 }
 
