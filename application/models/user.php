@@ -8,8 +8,9 @@ class User extends CI_Model {
   public function get_user_ap ($account, $password) {
     $this->db->where ('account', $account);
     $this->db->where ('password', $password);
-    $query = $this->db->get('users');
+    $query = $this->db->get('blog.users');
     $users = $query->result();
+
 
     if (count ($users) > 0) {
       return $users[0];
@@ -18,36 +19,41 @@ class User extends CI_Model {
     }
   }
 
-  public function register($account,$password,$nick){
+  public function register($nick,$account,$password){
     $data=array(
-
+      'nick'=>$nick,
       'account'=>$account,
-      'password'=>$password,
-      'nick'=>$nick
+      'password'=>$password
+
       );
 
-    $this->db->insert('users',$data);
+    $this->db->insert('blog.users',$data);
 
   }
   public function get_users_by_acc_nic($account)
   {
     $this->db->where('account', $account);
     // $this->db->where('nick', $nick);
-    $query=$this->db->get('users');
+    $query=$this->db->get('blog.users');
 
     return $query->result();
   }
-
+  public function get_users($ids)
+  {
+    $this->db->where_in ('id', $ids);
+    $query=$this->db->get('blog.users');
+    return $query->result();
+  }
   public function get_articles()
   {
-    $query=$this->db->get('articles');
+    $query=$this->db->get('blog.articles');
 
     return $query->result();
   }
   public function get_article($id)
   {
     $this->db->where('id',$id);
-    $query=$this->db->get('articles');
+    $query=$this->db->get('blog.articles');
     $result= $query->result();
 
     if(count($result)>0){
@@ -62,20 +68,51 @@ class User extends CI_Model {
     $data=array(
       'title'=>$article
       );
-    $this->db->insert('articles',$data);
+    $this->db->insert('blog.articles',$data);
     }
   }
   public function update($id,$data)
   {
     if($this->input->cookie('is_login')==='YES'){
     $this->db->where('id',$id);
-    $this->db->update('articles',$data);
+    $this->db->update('blog.articles',$data);
     }
   }
   public function delete($id)
   {
     $this->db->where('id',$id);
-    $this->db->delete('articles');
+    $this->db->delete('blog.articles');
 
   }
+
+// public function many_users()
+// {
+//   $i=11;
+//   while ($i<= 111) {
+//     $nick='nick'.$i;
+//     $account='user'.$i;
+//     $password=$i;
+
+//     $data=array(
+//       'nick'=>$nick,
+//       'account'=>$account,
+//       'password'=>$password
+//       );
+//     $this->db->insert('blog.users',$data);
+//     $i++;
+//   }
+// }
+
+  // public function many_articles()
+  // {
+  //   $i=101;
+  //   while ($i<=111) {
+  //     $article="article".$i;
+  //     $data=array(
+  //       'title'=>$article
+  //       );
+  //   $this->db->insert('blog.articles',$data);
+  //   $i++;
+  //   }
+  // }
 }

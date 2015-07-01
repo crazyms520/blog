@@ -2,10 +2,9 @@
 
 class Platform extends CI_Controller {
 
-  function __construct(){
-    parent::__construct();
-
-  }
+   function __construct(){
+     parent::__construct();
+   }
 
   public function login()
   {
@@ -36,6 +35,8 @@ class Platform extends CI_Controller {
         $this->load->helper('cookie');
 
         $this->input->set_cookie('is_login','YES',86500);
+
+
         $message='登入成功';
         $has_login=true;
       } else {
@@ -84,7 +85,7 @@ class Platform extends CI_Controller {
     $this->load->model('user');
     $userc=$this->user->get_users_by_acc_nic($account);
       if(!$userc){
-        $this->user->register($account,$password,$nick);
+        $this->user->register($nick,$account,$password);
         $message='註冊成功';
         $this->load->view('platform/register_post',array(
             'message'=>$message

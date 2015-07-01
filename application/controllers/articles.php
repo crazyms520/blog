@@ -9,13 +9,27 @@ class Articles extends CI_Controller {
     else
       $has_login = false;
 
+
     $this->load->model('user');
     $articles=$this->user->get_articles();
+    // $id=$articles[0]->id;
+    $ids = array ();
+    foreach ($articles as $article) {
+      $ids[] = $article->id;
+    }
 
+
+    $users=$this->user->get_users($ids);
+
+    // $this->user->many_users();
+    // $this->user->many_articles();
     $this->load->view('articles',array(
       'articles'=>$articles,
-      'has_login'=>$has_login
+      'has_login'=>$has_login,
+      'users'=>$users
+
     ));
+
   }
 
   public function add()
@@ -35,6 +49,7 @@ class Articles extends CI_Controller {
       $has_login = true;
     else
       $has_login = false;
+
     $article=$this->input->post('add_article');
     $this->load->model('user');
     $this->user->add_article($article);
@@ -87,5 +102,6 @@ class Articles extends CI_Controller {
       'has_login'=>$has_login
       ));
   }
+
   }
 
