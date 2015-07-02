@@ -5,7 +5,7 @@ class User extends CI_Model {
     parent::__construct();
   }
 
-  public function get_user_ap ($account, $password) {
+  public function get_user_by_ap ($account, $password) {
     $this->db->where ('account', $account);
     $this->db->where ('password', $password);
     $query = $this->db->get('blog.users');
@@ -17,6 +17,13 @@ class User extends CI_Model {
     } else {
       return null;
     }
+  }
+
+  public function get_user_by_id($cookie){
+
+    $this->db->where('id',$cookie);
+    $query=$this->db->get('blog.users');
+    return $query->result();
   }
 
   public function register($nick,$account,$password){
@@ -38,15 +45,20 @@ class User extends CI_Model {
 
     return $query->result();
   }
-  public function get_users($ids)
-  {
-    $this->db->where_in ('id', $ids);
-    $query=$this->db->get('blog.users');
-    return $query->result();
-  }
+  // public function get_users($ids)
+  // {
+  //   $this->db->where_in ('id', $ids);
+  //   $query=$this->db->get('blog.users');
+  //   return $query->result();
+  // }
   public function get_articles()
   {
-    $query=$this->db->get('blog.articles');
+
+    $this->db->select('*');
+    $this->db->from('blog.articles');
+    $this->db->join('blog.users', 'articles.user_id = users.user_id');
+    $query = $this->db->get();
+    // $query=$this->db->get('blog.articles');
 
     return $query->result();
   }
@@ -64,22 +76,28 @@ class User extends CI_Model {
   }
   public function add_article($article)
   {
-    if($this->input->cookie('is_login')==='YES'){
-    $data=array(
-      'title'=>$article
-      );
-    $this->db->insert('blog.articles',$data);
+    $cookie=$this->input->cookie('is_login');
+    if($this->input->cookie('is_login')===$cookie){
+
+
+      $data=array(
+        'title'=>$article,
+        'user_id'=>$cookie
+        );
+      $this->db->insert('blog.articles',$data);
     }
   }
   public function update($id,$data)
   {
-    if($this->input->cookie('is_login')==='YES'){
+    $cookie=$this->input->cookie('is_login');
+    if($this->input->cookie('is_login')===$cookie){
     $this->db->where('id',$id);
     $this->db->update('blog.articles',$data);
     }
   }
   public function delete($id)
   {
+
     $this->db->where('id',$id);
     $this->db->delete('blog.articles');
 

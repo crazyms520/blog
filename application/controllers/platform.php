@@ -8,16 +8,31 @@ class Platform extends CI_Controller {
 
   public function login()
   {
-    if($this->input->cookie('is_login')==='YES')
-      $has_login = true;
-    else
+    $cookie = $this->input->cookie('is_login');
+    $this->load->model('user');
+    if(!$cookie){
+
       $has_login = false;
+      $this->load->view('platform/login',array(
+          'has_login'=>$has_login
+        ));
+
+    } else {
+
+        if($this->input->cookie('is_login')===$cookie){
+            $has_login = true;
+        } else {
+            $has_login = false;
+        }
+
     $this->load->view('platform/login',array(
           'has_login'=>$has_login
         ));
+    }
   }
   public function login_post()
   {
+    $this->load->driver('cache');
     $account=$this->input->post('account');
     $password=$this->input->post('password');
 
@@ -27,25 +42,26 @@ class Platform extends CI_Controller {
 
     // }
     $this->load->model('user');
-    $user=$this->user->get_user_ap($account,$password);
+    $user=$this->user->get_user_by_ap($account,$password);
+
+
 
     if ($account && $password) {
       // 真的post過來的
       if($user){
+        $id=$user->user_id;
         $this->load->helper('cookie');
-
-        $this->input->set_cookie('is_login','YES',86500);
-
+        $this->input->set_cookie('is_login',$id,86500);
 
         $message='登入成功';
         $has_login=true;
       } else {
+          $message='登入失敗';
+          $has_login=false;
+        }
+    } else {
         $message='登入失敗';
         $has_login=false;
-      }
-    }  else {
-      $message='登入失敗';
-      $has_login=false;
 
     }
 

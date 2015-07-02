@@ -2,9 +2,15 @@
 
 class Articles extends CI_Controller {
 
+   function __construct(){
+     parent::__construct();
+
+   }
+
   public function index()
   {
-    if($this->input->cookie('is_login')==='YES')
+    $cookie=$this->input->cookie('is_login');
+    if($this->input->cookie('is_login')===$cookie)
       $has_login = true;
     else
       $has_login = false;
@@ -12,21 +18,10 @@ class Articles extends CI_Controller {
 
     $this->load->model('user');
     $articles=$this->user->get_articles();
-    // $id=$articles[0]->id;
-    $ids = array ();
-    foreach ($articles as $article) {
-      $ids[] = $article->id;
-    }
 
-
-    $users=$this->user->get_users($ids);
-
-    // $this->user->many_users();
-    // $this->user->many_articles();
     $this->load->view('articles',array(
       'articles'=>$articles,
       'has_login'=>$has_login,
-      'users'=>$users
 
     ));
 
@@ -34,7 +29,8 @@ class Articles extends CI_Controller {
 
   public function add()
   {
-    if($this->input->cookie('is_login')==='YES')
+    $cookie=$this->input->cookie('is_login');
+    if($this->input->cookie('is_login')===$cookie)
       $has_login = true;
     else
       $has_login = false;
@@ -45,7 +41,8 @@ class Articles extends CI_Controller {
 
   public function add_post()
   {
-    if($this->input->cookie('is_login')==='YES')
+    $cookie=$this->input->cookie('is_login');
+    if($this->input->cookie('is_login')===$cookie)
       $has_login = true;
     else
       $has_login = false;
@@ -59,7 +56,8 @@ class Articles extends CI_Controller {
   }
   public function edit($id = 0)
   {
-    if($this->input->cookie('is_login')==='YES')
+    $cookie=$this->input->cookie('is_login');
+    if($this->input->cookie('is_login')===$cookie)
       $has_login = true;
     else
       $has_login = false;
@@ -76,7 +74,8 @@ class Articles extends CI_Controller {
   }
   public function edit_post($id=0)
   {
-    if($this->input->cookie('is_login')==='YES')
+    $cookie=$this->input->cookie('is_login');
+    if($this->input->cookie('is_login')===$cookie)
       $has_login = true;
     else
       $has_login = false;
@@ -92,7 +91,8 @@ class Articles extends CI_Controller {
 
   public function delete($id=0)
   {
-    if($this->input->cookie('is_login')==='YES')
+    $cookie=$this->input->cookie('is_login');
+    if($this->input->cookie('is_login')===$cookie)
       $has_login = true;
     else
       $has_login = false;
@@ -103,5 +103,15 @@ class Articles extends CI_Controller {
       ));
   }
 
+  public function comment(){
+    $cookie=$this->input->cookie('is_login');
+    if($this->input->cookie('is_login')===$cookie)
+      $has_login = true;
+    else
+      $has_login = false;
+    $this->load->view('articles/comment',array(
+        'has_login'=>$has_login
+      ));
   }
+}
 
