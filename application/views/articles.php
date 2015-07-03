@@ -21,7 +21,7 @@
           <td><b><?php echo $article->nick ; ?></b></td>
           <td><b><a href='<?php echo site_url('articles/edit/'.$article->id)?>'>修改</a></b></td>
           <td><b><a href='<?php echo site_url('articles/delete/'.$article->id)?>'>刪除</a></b></td>
-          <td><b><a href='<?php echo site_url('articles/comment/'.$article->id)?>'>留言</a></b></td>
+          <td><b><a href='<?php echo site_url('gbooks/index/'.$article->id)?>'>留言</a></b></td>
       </tr>
       <?php } ?>
       <?php } ?>

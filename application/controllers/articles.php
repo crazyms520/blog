@@ -31,6 +31,7 @@ class Articles extends CI_Controller {
   {
     $cookie=$this->input->cookie('is_login');
     if($this->input->cookie('is_login')===$cookie)
+
       $has_login = true;
     else
       $has_login = false;

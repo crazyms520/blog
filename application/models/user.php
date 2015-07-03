@@ -21,7 +21,7 @@ class User extends CI_Model {
 
   public function get_user_by_id($cookie){
 
-    $this->db->where('id',$cookie);
+    $this->db->where('user_id',$cookie);
     $query=$this->db->get('blog.users');
     return $query->result();
   }
