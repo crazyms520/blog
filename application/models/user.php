@@ -5,7 +5,7 @@ class User extends CI_Model {
     {
         parent::__construct();
     }
-
+    //藉由帳號密碼取得user
     public function get_user_by_ap($account,$password){
       $this->db->where('account',$account);
       $this->db->where('password',$password);
@@ -18,7 +18,7 @@ class User extends CI_Model {
         return null;
       }
     }
-
+    //藉由帳號取得user,用來判別帳號有無重覆
     public function get_user_account($account){
       $this->db->where('account',$account);
       $query = $this->db->get('blog.users');
@@ -30,7 +30,7 @@ class User extends CI_Model {
         return null;
       }
     }
-
+    //註冊
     public function register($nick,$account,$password){
       $data=array(
         'nick'=>$nick,

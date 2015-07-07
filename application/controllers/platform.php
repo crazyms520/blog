@@ -2,13 +2,14 @@
 
 class Platform extends CI_Controller {
   function __construct()
-    {
+    {   //呼叫建構函數
         parent::__construct();
         $this->load->model('user');
         $this->load->helper('cookie');
     }
 
   public function login(){
+    //判斷是否有cookie
     if($this->input->cookie('login')==='YES'){
       $login = true ;
     }else{
@@ -66,6 +67,7 @@ class Platform extends CI_Controller {
 
     $this->load->view('platform/register',array('login'=>$login));
   }
+  //註冊
   public function register_post(){
     $nick=$this->input->post('nick');
     $account=$this->input->post('account');
@@ -96,6 +98,7 @@ class Platform extends CI_Controller {
         ));
     }
   }
+  //登出,清除所有cookie
   public function logout(){
 
     $this->input->set_cookie('login',null);

@@ -1,21 +1,22 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Articles extends CI_Controller {
+  //呼叫建構函數
   function __construct()
     {
         parent::__construct();
         $this->load->model('article');
         $this->load->helper('cookie');
     }
+  //預設,讀取文章列表
   public function index(){
+    //判斷是否有cookie
     if($this->input->cookie('login') === 'YES'){
 
       $articles = $this->article->get_articles();
 
       $login = true ;
-      $this->load->model('user');
-      $account=$this->input->cookie('account');
-      $nick=$this->user->get_user_account($account);
+
       $this->load->view('article',array(
         'login'=>$login,
         'articles'=>$articles
@@ -29,9 +30,9 @@ class Articles extends CI_Controller {
         ));
     }
   }
-
+  //add函數,讀取view(articles/add)
   public function add(){
-
+    //判斷是否有cookie
     if($this->input->cookie('login') === 'YES'){
       $login = true ;
 
@@ -45,9 +46,10 @@ class Articles extends CI_Controller {
         ));
     }
   }
-
+  //新增文章
   public function add_post(){
     $title = $this->input->post('title');
+    //判斷是否有cookie
     if($this->input->cookie('login') === 'YES'){
       $user_id=$this->input->cookie('id');
 
@@ -68,12 +70,14 @@ class Articles extends CI_Controller {
         ));
     }
   }
-
+  //讀取view(articles/edit)
   public function edit($id = 0){
+    //判斷是否有cookie
     if($this->input->cookie('login') === 'YES'){
 
       $login = true ;
-      $article = $this->article->get_articles_by_id($id);
+      $article = $this->article->get_article_by_id($id);
+
       $this->load->view('articles/edit',array(
           'login'=>$login,
           'article'=>$article
@@ -86,10 +90,9 @@ class Articles extends CI_Controller {
         ));
     }
   }
-
+  //修改文章
   public function edit_post($id=0){
-
-
+    //判斷是否有cookie
     if($this->input->cookie('login') === 'YES'){
       $title=$this->input->post('title');
       $login = true;
@@ -112,7 +115,9 @@ class Articles extends CI_Controller {
         ));
     }
   }
+  //刪除文章
   public function delete($id=0){
+    //判斷是否有cookie
     if($this->input->cookie('login') === 'YES'){
 
       $login = true ;
