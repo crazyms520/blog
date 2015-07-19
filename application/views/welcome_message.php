@@ -3,7 +3,12 @@
 	<head>
 		<meta charset="utf-8">
 		<title>Welcome to Blog</title>
+		<style type='text/css'>
+		h1{
+			color:red;
 
+		}
+		</style>
 	<!--<style type="text/css">
 
 	::selection{ background-color: #E13300; color: white; }
@@ -64,10 +69,12 @@
 	}
 	</style>
 	-->
+
 	</head>
 	<body>
 		<?php include APPPATH.'views/header.php';?>
-		<?php echo $message; ?>
+		<?php echo $message.'<br />'; ?>
+		<?php echo '瀏覽人數:' ?><h1><?php echo $guest_id;?></h1>
 
 
 	</body>

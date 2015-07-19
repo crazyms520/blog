@@ -38,6 +38,27 @@ class User extends CI_Model {
         'password'=>$password
             );
       $this->db->insert('blog.users',$data);
-
     }
+
+    public function get_guests(){
+      $query=$this->db->get('blog.guests');
+      $guest=$query->result();
+
+      if (count($guest) >0 ) {
+        return $guest[0];
+      }else{
+        return null;
+      }
+    }
+
+    public function add_guests($id,$guest_id){
+
+      $this->db->where('id',$id);
+
+      $this->db->update('blog.guests',array(
+        'guest'=>$guest_id
+        ));
+    }
+
+
 }

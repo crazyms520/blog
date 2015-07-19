@@ -30,9 +30,10 @@ class Platform extends CI_Controller {
       if($user){
           $this->input->set_cookie('login','YES',86500);
           $this->input->set_cookie('id',$user->user_id,86500);
-          $this->input->set_cookie('nick',$user->nick,86500);
+          $this->input->set_cookie('nick',$user->name,86500);
           $this->input->set_cookie('account',$user->account,86500);
           $this->input->set_cookie('password',$user->password,86500);
+
           $login = true;
           $message = '登入成功';
           $this->load->view('platform/login_post',array(
