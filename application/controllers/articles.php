@@ -6,6 +6,7 @@ class Articles extends CI_Controller {
     {
         parent::__construct();
         $this->load->model('article');
+        $this->load->model('message');
         $this->load->helper('cookie');
     }
   //預設,讀取文章列表
@@ -16,8 +17,7 @@ class Articles extends CI_Controller {
       $articles = $this->article->get_articles();
 
       $login = true ;
-
-      $this->load->view('article',array(
+      $this->load->view('articles/title',array(
         'login'=>$login,
         'articles'=>$articles
         ));
@@ -25,7 +25,7 @@ class Articles extends CI_Controller {
     } else {
         $login = false ;
 
-        $this->load->view('article',array(
+        $this->load->view('articles/title',array(
         'login'=>$login
         ));
     }
@@ -49,11 +49,13 @@ class Articles extends CI_Controller {
   //新增文章
   public function add_post(){
     $title = $this->input->post('title');
+    $content = $this->input->post('content');
     //判斷是否有cookie
     if($this->input->cookie('login') === 'YES'){
       $user_id=$this->input->cookie('id');
-
-      $this->article->add($title,$user_id);
+      date_default_timezone_set('Asia/Taipei');
+      $time = date('y-m-d H:i:s');
+      $this->article->add($title,$user_id,$content,$time);
       $login = true ;
       $message = '新增成功';
 
@@ -67,6 +69,26 @@ class Articles extends CI_Controller {
       $this->load->view('articles/add_post',array(
           'login'=>$login,
           'message'=>$message
+        ));
+    }
+  }
+
+  public function detail($id=0){
+    if($this->input->cookie('login') === 'YES'){
+      $login = true ;
+
+      $query = $this->article->get_article_by_id($id);
+      $messages = $this->message->get_user_name($id);
+      $this->load->view('articles/detail',array(
+        'content'=>$query->content,
+        'time'=>$query->time,
+        'messages'=>$messages,
+        'login'=>$login
+        ));
+    }else{
+      $login = false ;
+      $this->load->view('articles/detail',array(
+        'login'=>$login
         ));
     }
   }

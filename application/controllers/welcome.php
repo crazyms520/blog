@@ -17,7 +17,7 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see http://codeigniter.com/user_guide/general/urls.html
 	 */
-	public function index($id=1)
+	public function index()
 	{if($this->input->cookie('login')==='YES'){
       $login = true ;
       $message = '登入狀態' ;
@@ -30,8 +30,11 @@ class Welcome extends CI_Controller {
     $query=$this->user->get_guests();
     $guest = $query->guest;
     if ($this->input->cookie('login') !== 'YES') {
+      $id=1;
      $this->user->add_guests($id,++$guest);
     }
+
+    // $result = mysql_query("SELECT * FROM blog.users");
 
     $guest_id=str_pad($guest,4,'0',STR_PAD_LEFT);
 		$this->load->view('welcome_message',array(
@@ -39,6 +42,7 @@ class Welcome extends CI_Controller {
 			'message'=>$message,
       'guest_id'=>$guest_id
 			));
+
 
 
 	}

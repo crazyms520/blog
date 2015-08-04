@@ -19,7 +19,6 @@ class Article extends CI_Model {
       $this->db->where('id',$id);
       $query=$this->db->get('blog.articles');
       $articles=$query->result();
-
       if(count($articles) > 0){
         return $articles[0];
       }else {
@@ -27,10 +26,13 @@ class Article extends CI_Model {
       }
     }
     //新增
-    public function add($title,$user_id){
+    public function add($title,$user_id,$content,$time){
+
       $data=array(
         'title'=>$title,
-        'user_id'=>$user_id
+        'user_id'=>$user_id,
+        'content'=>$content,
+        'time'=>$time
         );
       $this->db->insert('blog.articles',$data);
     }
