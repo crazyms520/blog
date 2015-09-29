@@ -10,7 +10,7 @@ class user extends CI_Model {
 
     }
 
-    public function register(){
+    public function register($data){
       $this->db->insert('users',$data);
     }
 }
