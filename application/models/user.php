@@ -6,7 +6,17 @@ class user extends CI_Model {
         parent::__construct();
     }
 
-    public function login(){
+    public function get_user_by_acc_pas($acc,$pas){
+      $this->db->where('account',$acc)
+               ->where('password',$pas);
+      $user = $this->db->get('users')->result();
+
+
+      if(count($user) > 0){
+        return $user[0];
+      }else{
+        return null;
+      }
 
     }
 

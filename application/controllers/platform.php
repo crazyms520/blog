@@ -8,8 +8,16 @@ class Platform extends CI_Controller {
 
   public function login()
   {
-    $this->input->post('account');
-    $this->input->post('password');
+    $account = $this->input->post('account');
+    $password = $this->input->post('password');
+    $user = $this->user->get_user_by_acc_pas($account,$password);
+    if($user){
+      $this->session->set_userdata('login','YES',86500);
+      $this->session->set_userdata('id',$user->user_id,86500);
+    }
+    else{
+      return null;
+    }
     $this->load->view('welcome_message');
   }
 
