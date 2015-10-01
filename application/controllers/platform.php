@@ -11,16 +11,25 @@ class Platform extends CI_Controller {
     $account = $this->input->post('account');
     $password = $this->input->post('password');
     $user = $this->user->get_user_by_acc_pas($account,$password);
-    if($user){
-      $this->session->set_userdata('login','YES',86500);
-      $this->session->set_userdata('id',$user->user_id,86500);
+    if($account && $password){
+      if($user){
+        $this->session->set_userdata('login','YES',86500);
+        $this->session->set_userdata('id',$user->user_id,86500);
+        $user_id = $this->session->userdata('id');
+        $this->load->view('books/index');
+      }else{
+        $this->load->view('welcome_message');
+      }
+    }else{
+      $this->load->view('welcome_message');
     }
-    else{
-      return null;
-    }
-    $this->load->view('welcome_message');
   }
 
+  public function logout(){
+    $this->session->unset_userdata('login');
+    $this->session->unset_userdata('id');
+    $this->load->view('welcome_message');
+  }
   public function register(){
     $account = $this->input->post('account');
     $name = $this->input->post('name');
