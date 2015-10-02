@@ -22,5 +22,13 @@
       <a href="<?php echo site_url('platform/logout');?>">登出</a>
     </div>
 
+    <?php
+      foreach($query->result() as $row){
+
+      echo $row->id.'&nbsp';
+      echo $row->name;
+      echo '</br>';
+    }
+    ?>
   </body>
 </html>
