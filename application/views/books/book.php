@@ -19,11 +19,28 @@
   <body>
     <div class='header'>
       <?php if($user_id){?>
-      <a href="<?php echo site_url('books/book');?>">書本</a>
+      <a href="<?php echo site_url('books/index');?>">書本</a>
       <a href="<?php echo site_url('platform/logout');?>">登出</a>
       <?php } ?>
     </div>
 
-    <?php echo $name.'歡迎回來';?>
+    <div class='search'>
+      <form action='<?php echo site_url('books/search');?>' method='get'>
+        搜尋<input type='text' name='search_bar' value='' placeholder='請輸入id'>
+        <input type='submit' value='搜尋'>
+      </form>
+    </div>
+
+    <div>
+    <?php
+      echo $pagelist.'</br>';
+      foreach($query->result() as $row){
+
+      echo $row->id.'&nbsp';
+      echo $row->name;
+      echo '</br>';
+    }
+    ?>
+  </div>
   </body>
 </html>

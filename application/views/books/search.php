@@ -24,6 +24,6 @@
       <?php } ?>
     </div>
 
-    <?php echo $name.'歡迎回來';?>
+    <?php echo $book->name; ?>
   </body>
 </html>

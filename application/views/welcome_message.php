@@ -82,8 +82,10 @@
 	</head>
 	<body>
 		<div class='header'>
-			<a href="<?php echo site_url('books/index');?>">書本</a>
+			<?php if($login === 'YES'){ ?>
+			<a href="<?php echo site_url('books/book');?>">書本</a>
 			<a href="<?php echo site_url('platform/logout');?>">登出</a>
+			<?php }?>
 		</div>
 
 		<div class='login'>
