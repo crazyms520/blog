@@ -24,6 +24,9 @@
       <?php } ?>
     </div>
 
-    <?php echo $name.'歡迎回來';?>
+    <?php
+      if($name){
+      echo $name.'歡迎回來';
+    }?>
   </body>
 </html>

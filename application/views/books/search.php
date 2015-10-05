@@ -23,7 +23,13 @@
       <a href="<?php echo site_url('platform/logout');?>">登出</a>
       <?php } ?>
     </div>
+    <input type='text' value='' placeholder='<?php echo $search;?>'>
+    <p>
+    <?php
+      foreach ($books as $book) {
+          echo $book->id.$book->name.'<p>';
+      }
+    ?>
 
-    <?php echo $book->name; ?>
   </body>
 </html>

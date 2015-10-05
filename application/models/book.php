@@ -6,14 +6,9 @@ class book extends CI_Model {
         parent::__construct();
     }
 
-    public function search_book_by_id($id){
-      $this->db->where('id',$id);
-      $book = $this->db->get('books')->result();
-
-      if(count($book) > 0 ){
-        return $book[0];
-      }else{
-        return null;
-      }
+    public function search_book_by_id($search){
+      $this->db->like('name',$search);
+      $this->db->or_like('id',$search);
+      return $book = $this->db->get('books')->result();
     }
 }
