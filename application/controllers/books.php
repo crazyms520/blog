@@ -5,11 +5,12 @@ class Books extends CI_Controller {
     parent::__construct();
     $this->load->model('user');
     $this->load->model('book');
+    $this->load->library('pagination');
   }
   public function book($offset = 0)
   {
 
-    $this->load->library('pagination');
+
     $data['user_id'] = $this->session->userdata('id');
     if($data['user_id']){
       $config['base_url'] = 'http://crazyms.com/blog/index.php/books/book';
@@ -29,10 +30,22 @@ class Books extends CI_Controller {
   }
 
   public function search(){
-    $data['search'] = $this->input->get('search_bar');
+    $data['search'] = $this->input->get('search');
     $data['user_id'] = $this->session->userdata('id');
+    $search = $data['search'];
     if($data['search']){
-      $data['books'] = $this->book->search_book_by_id($data['search']);
+
+      $config['base_url'] = "http://crazyms.com/blog/index.php/books/search?search=$search&offset=$offset";
+      $config['total_rows'] = count($this->book->search_book_by_id($data['search']));
+      $config['per_page'] = 5;
+      $config['uri_segment'] = 1;
+
+      $this->pagination->initialize($config);
+
+      $this->db->limit($config['per_page'],$offset);
+      $data['book'] = $this->book->search_book_by_id($data['search']);
+      $data['pagelist'] = $this->pagination->create_links();
+
       $this->load->view('books/search',$data);
     }
 

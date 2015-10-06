@@ -26,9 +26,13 @@
     <input type='text' value='' placeholder='<?php echo $search;?>'>
     <p>
     <?php
-      foreach ($books as $book) {
-          echo $book->id.$book->name.'<p>';
-      }
+    echo $pagelist.'</br>';
+      foreach($book as $book){
+      echo $book->id.'&nbsp';
+      echo $book->name;
+      echo '</br>';
+    }
+
     ?>
 
   </body>
