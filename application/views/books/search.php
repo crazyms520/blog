@@ -26,7 +26,7 @@
     <input type='text' value='' placeholder='<?php echo $search;?>'>
     <p>
     <?php
-    echo $pagelist.'</br>';
+
       foreach($book as $book){
       echo $book->id.'&nbsp';
       echo $book->name;
@@ -34,6 +34,16 @@
     }
 
     ?>
-
+    <?php //分頁頁碼
+    echo '共 '.$nums.' 筆-在 '.$page.' 頁-共 '.$pages.' 頁';
+    echo "<br /><a href=?search=$search&page=1>首頁</a> ";
+    echo "第 ";
+    for( $i=1 ; $i<=$pages ; $i++ ) {
+        if ( $page-3 < $i && $i < $page+3 ) {
+            echo "<a href=?search=$search&page=".$i.">".$i."</a> ";
+        }
+    }
+    echo " 頁 <a href=?search=$search&page=".$pages.">末頁</a><br /><br />";
+    ?>
   </body>
 </html>

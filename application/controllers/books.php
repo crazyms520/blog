@@ -32,20 +32,19 @@ class Books extends CI_Controller {
   public function search(){
     $data['search'] = $this->input->get('search');
     $data['user_id'] = $this->session->userdata('id');
-    $search = $data['search'];
+
     if($data['search']){
 
-      $config['base_url'] = "http://crazyms.com/blog/index.php/books/search?search=$search&offset=$offset";
-      $config['total_rows'] = count($this->book->search_book_by_id($data['search']));
-      $config['per_page'] = 5;
-      $config['uri_segment'] = 1;
-
-      $this->pagination->initialize($config);
-
-      $this->db->limit($config['per_page'],$offset);
-      $data['book'] = $this->book->search_book_by_id($data['search']);
-      $data['pagelist'] = $this->pagination->create_links();
-
+      $data['nums'] = count($this->book->search_book_by_id($data['search']));
+      $per = 5;
+      $data['pages'] = ceil($data['nums']/$per);
+      if(!isset($_GET['page'])){
+        $data['page'] = 1;
+      }else{
+        $data['page'] = intval($_GET['page']);
+      }
+      $start = ($data['page']-1) * $per;
+      $data['book'] = $this->db->like('name',$data['search'])->or_like('id',$data['search'])->limit($per,$start)->get('books')->result();
       $this->load->view('books/search',$data);
     }
 
