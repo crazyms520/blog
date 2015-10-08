@@ -27,6 +27,7 @@
     <div class='search'>
       <form action='<?php echo site_url('books/search');?>' method='get'>
         搜尋<input type='text' name='search' value='' placeholder='請輸入id'>
+        <input type='hidden' name='per_page' value=''>
         <input type='submit' value='搜尋'>
       </form>
     </div>

@@ -32,9 +32,9 @@
       echo $book->name;
       echo '</br>';
     }
-
+    echo $pagination;
     ?>
-    <?php //分頁頁碼
+    <!--<?php //分頁頁碼
     echo '共 '.$nums.' 筆-在 '.$page.' 頁-共 '.$pages.' 頁';
     echo "<br /><a href=?search=$search&page=1>首頁</a> ";
     echo "第 ";
@@ -44,6 +44,6 @@
         }
     }
     echo " 頁 <a href=?search=$search&page=".$pages.">末頁</a><br /><br />";
-    ?>
+    ?>-->
   </body>
 </html>
