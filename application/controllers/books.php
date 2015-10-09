@@ -35,8 +35,7 @@ class Books extends CI_Controller {
 
   public function search(){
     $search = $this->input->get('search');
-    $offset = $this->input->get('per_page');
-
+    $per_page = $this->input->get('per_page');
     $data['user_id'] = $this->session->userdata('id');
 
     if($search){
@@ -44,12 +43,27 @@ class Books extends CI_Controller {
       $config['base_url'] = site_url()."/../index.php/books/search?search=$search";
       $config['total_rows'] =$this->book->count_all_results($search);
       $config['per_page'] = 5;
+      // $config['uri_segment'] = 5;
+      $config['use_page_numbers'] = TRUE;
       $config['page_query_string'] = TRUE;
+      if($per_page){
+        $offset = ($per_page-1) * $config['per_page'];
+      }else{
+        $offset = 0;
+      }
       $this->pagination->initialize($config);
-
       $data['pagination'] = $this->pagination->create_links();
 
-
+      // $data['nums'] = count($this->book->search_book_by_id($data['search']));
+      // $per = 5;
+      // $data['pages'] = ceil($data['nums']/$per);
+      // if(!isset($_GET['page'])){
+      //   $data['page'] = 1;
+      // }else{
+      //   $data['page'] = intval($_GET['page']);
+      // }
+      // $start = ($data['page']-1) * $per;
+      // $data['book'] = $this->db->like('name',$data['search'])->or_like('id',$data['search'])->limit($per,$start)->get('books')->result();
       $data['search'] = $search;
       $data['book'] = $this->book->search_book_ci($search,$config['per_page'],$offset);
       $this->load->view('books/search',$data);
