@@ -9,18 +9,22 @@ class Books extends CI_Controller {
   }
   public function book($offset = 0)
   {
-
+    $per_page = $this->input->get('per_page');
 
     $data['user_id'] = $this->session->userdata('id');
     if($data['user_id']){
-      $config['base_url'] = 'http://crazyms.com/blog/index.php/books/book';
+      $config['base_url'] = 'http://crazyms.com/blog/index.php/books/book?';
       $config['total_rows'] = $this->db->count_all_results('books');
       $config['per_page'] = 5;
       $config['use_page_numbers'] = TRUE;
-      // $config['page_query_string'] = TRUE;
+      $config['page_query_string'] = TRUE;
+      if($per_page){
+        $offset = ($per_page-1) * $config['per_page'];
+      }else{
+        $offset = 0;
+      }
+
       // $config['query_string_segment'] = 'per_page';
-
-
       $this->pagination->initialize($config);
       $this->db->limit($config['per_page'],$offset);
       $data['query'] = $this->db->get('books');
